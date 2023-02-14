@@ -1,0 +1,22 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="oglasi">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="oglas">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" type="xs:integer"/>
+              <xs:element name="kategorija" type="xs:string"/>
+              <xs:element name="datumIstekaDan" type="xs:string"/>
+              <xs:element name="datumIstekaMesec" type="xs:string"/>
+              <xs:element name="cena" type="xs:string"/>
+              <xs:element name="tekst" type="xs:string"/>
+              <xs:element name="oznake" type="xs:string"/>
+              <xs:element name="email" type="xs:string"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

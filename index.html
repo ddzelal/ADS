@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "oglasi.dtd" SYSTEM "oglasi.xsd">
+<html>
+  <head>
+    <title>Oglasi API Client</title>
+  </head>
+  <body>
+    <h1 style="text-align: center">Dobro dosli na stranicu za oglase</h1>
+    <div
+      style="
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      "
+    >
+      <button style="width: 300px; height: 50px">
+        <a
+          href="/home/dzelal/Desktop/DzelalDesktop/stopedeset/oglasi/dodajOglasi.html"
+          >Dodaj oglas</a
+        >
+      </button>
+    </div>
+
+    <h1 style="text-align: center">Informacije o oglasima</h1>
+
+    <div id="oglasi"></div>
+
+    <script>
+      const oglasiDiv = document.getElementById('oglasi');
+      const dodajOglasForm = document.getElementById('dodajOglasForm');
+      const deleteOglas = async (i) => {
+        await fetch(`http://localhost:3000/oglasi/${i}`, { method: 'DELETE' });
+        location.reload();
+      };
+
+      fetch('http://localhost:3000/oglasi')
+        .then((res) => res.json())
+        .then((oglasi) => {
+          console.log(oglasi);
+          oglasi.forEach((oglas, i) => {
+            const div = document.createElement('div');
+            div.style.border = '1px solid gray';
+            div.style.margin = '10px';
+            div.style.padding = '10px';
+            div.innerHTML = `
+                  <h2>Kategorija: ${oglas.kategorija}</h2>
+                  <p>Datum isteka Dan: ${oglas.datumIstekaDan}</p>
+                  <p>Datum isteka Mesec: ${oglas.datumIstekaMesec}</p>
+                  <p>Cena: ${oglas.cena}</p>
+                  <p>Tekst oglasa: ${oglas.tekst}</p>
+                  <p>Oznake: ${oglas.oznake}</p>
+                  <p>E-mail: ${oglas.email}</p>
+                  <button style="background-color:red;color:white;padding:5px 10px;border-radius:5px;" onclick='deleteOglas(${i})'>Obrisi</button>
+                  <button style="background-color:blue;color:white;padding:5px 10px;border-radius:5px;"><a href="/home/dzelal/Desktop/DzelalDesktop/stopedeset/oglasi/izmeniOglasi.html?id=${i}" style="color:white;text-decoration:none;">Izmeni</a></button>
+
+                `;
+            oglasiDiv.appendChild(div);
+          });
+        })
+        .catch((err) => {
+          h1 = document.createElement('h1');
+          h1.style.textAlign = 'center';
+          h1.innerHTML = 'Trenutno nema dostupnih oglasa';
+          oglasiDiv.appendChild(h1);
+        });
+    </script>
+  </body>
+</html>

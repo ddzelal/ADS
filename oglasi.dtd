@@ -1,0 +1,21 @@
+<!ELEMENT oglasi (oglas+)>
+<!ELEMENT oglas (kategorija, datum, cena, tekst, oznake, email,id)>
+<!ELEMENT kategorija (#PCDATA)>
+<!ELEMENT datum (#PCDATA)>
+<!ELEMENT cena (#PCDATA)>
+<!ELEMENT tekst (#PCDATA)>
+<!ELEMENT oznake (oznaka+)>
+<!ELEMENT oznaka (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT id (#PCDATA)>
+
+<!ATTLIST kategorija
+  tip (automobili | stanovi | nastava | ...) #REQUIRED
+>
+<!ATTLIST cena
+  valuta (dinari | ...) "dinari"
+>
+
+<!ATTLIST email
+  tip (privatni | sluzbeni) "privatni"
+>

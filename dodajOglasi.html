@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="dodajOglasForm">
+      <div>
+        <label for="kategorija">Kategorija:</label>
+        <input type="text" id="kategorija" name="kategorija" required />
+      </div>
+      <div>
+        <label for="datumIstekaDan">Datum isteka (dan):</label>
+        <input
+          type="number"
+          id="datumIstekaDan"
+          name="datumIstekaDan"
+          min="1"
+          max="31"
+          required
+        />
+      </div>
+      <div>
+        <label for="datumIstekaMesec">Datum isteka (mesec):</label>
+        <input
+          type="number"
+          id="datumIstekaMesec"
+          name="datumIstekaMesec"
+          min="1"
+          max="12"
+          required
+        />
+      </div>
+      <div>
+        <label for="cena">Cena:</label>
+        <input type="number" id="cena" name="cena" min="0" required />
+      </div>
+      <div>
+        <label for="tekst">Tekst oglasa:</label>
+        <textarea
+          id="tekst"
+          name="tekst"
+          required
+          minlength="10"
+          maxlength="180"
+        ></textarea>
+      </div>
+      <div>
+        <label for="oznake">Oznake (nije obavezno):</label>
+        <input type="text" id="oznake" name="oznake" />
+      </div>
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+      <button type="submit">Dodaj oglas</button>
+    </form>
+    <script>
+      dodajOglasForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const formData = new FormData(dodajOglasForm);
+        const reqData = {
+          id: Math.floor(Math.random() * 100) + 1,
+        };
+        for (var [key, value] of formData.entries()) {
+          reqData[key] = value;
+        }
+        await fetch('http://localhost:3000/oglasi', {
+          method: 'POST',
+          body: JSON.stringify(reqData),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          mode: 'cors',
+          cache: 'no-cache',
+          credentials: 'same-origin',
+        })
+          .then((res) => {
+            window.location.href =
+              '/home/dzelal/Desktop/DzelalDesktop/stopedeset/oglasi/index.html';
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
+    </script>
+  </body>
+  <style>
+    form {
+      width: 50%;
+      margin: 0 auto;
+      padding: 30px;
+      background-color: #f2f2f2;
+      border-radius: 10px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid gray;
+    }
+
+    #dodajOglasForm button[type='submit'] {
+      margin-top: 20px;
+      width: 100%;
+      padding: 10px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #dodajOglasForm button[type='submit']:hover {
+      background-color: #3e8e41;
+    }
+  </style>
+</html>

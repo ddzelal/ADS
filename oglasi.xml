@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<oglasi>
+  <oglas>
+    <kategorija>Auto</kategorija>
+    <tekst>Nije da nije ali to je bio taj dan </tekst>
+    <cena>23232</cena>
+    <datumIstekaDan>23</datumIstekaDan>
+    <datumIstekaMesec>12</datumIstekaMesec>
+    <email>doctordoctor@gmail.com</email>
+    <oznake/>
+    <id>0</id>
+  </oglas>
+  <oglas>
+    <kategorija>Kuca</kategorija>
+    <tekst>na prodaju golf 3</tekst>
+    <cena>232</cena>
+    <datumIstekaDan>23</datumIstekaDan>
+    <datumIstekaMesec>1</datumIstekaMesec>
+    <email>cplojovic@gmail.com</email>
+    <oznake/>
+    <id>1</id>
+  </oglas>
+</oglasi>
